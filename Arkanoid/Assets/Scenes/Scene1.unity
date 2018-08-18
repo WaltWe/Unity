@@ -299,6 +299,10 @@ Prefab:
       propertyPath: m_Parameters.colorGradient.ctime2
       value: 3855
       objectReference: {fileID: 0}
+    - target: {fileID: 1598786530830208, guid: c92a2f770d103e8489f9ac620e420084, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c92a2f770d103e8489f9ac620e420084, type: 2}
   m_IsPrefabAsset: 0

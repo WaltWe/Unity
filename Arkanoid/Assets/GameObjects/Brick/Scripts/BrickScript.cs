@@ -8,28 +8,33 @@ public class BrickScript : MonoBehaviour {
     private SpriteRenderer spr;
     public Sprite[] sprites;
 
-    private DerivativeIdEqn derivativeEqn;
-
     delegate float SpawnEquation(float time);
     delegate float DerivativeIdEqn(float time);
 
     // Use this for initialization
     void Start () {
+        Physics.IgnoreCollision(GameObject.Find("Paddle").GetComponent<Collider>(), GetComponent<Collider>());
         double idVsTime = (((Mathf.Sin((Time.time - 1) + Mathf.PI) / 2) + ((Time.time - 1) / 2)) / (2.5)) / 3;
+        SpawnEquation myMathFunc = (time) =>
+        {
+            return (float)(((Mathf.Sin((time - 1) + Mathf.PI) / 2) + ((time - 1) / 2)) / (2.5)) / 3;
+        };
+        var derivativeEqn = derive(myMathFunc);
+        var derivative = derivativeEqn(Time.time);
+        if(0.0001 > derivative && derivative > -0.0001)
+        {
+            GameObject.Find("BrickGenerator").GetComponent<BrickGenerationBehavior>().count++;
+            id = GameObject.Find("BrickGenerator").GetComponent<BrickGenerationBehavior>().count;
+        }
         id = (int)Random.Range((float)idVsTime - 1, (float)idVsTime + 1);
         if (id == 0) { id++; }
         if (id > 5) { id = 5; }
         hitCount = id;
-        id --;
+        id--;
         spr = GetComponent<SpriteRenderer>();
         spr.sprite = sprites[id];
         GetComponent<Rigidbody>().velocity = new Vector3(0, -1f, 0);
-        SpawnEquation myMathFunc = (time) =>
-        {
-            return(float)(((Mathf.Sin((time - 1) + Mathf.PI) / 2) + ((time - 1) / 2)) / (2.5)) / 3;
-        };
-        derivativeEqn = derive(myMathFunc);
-        var derivative = derivativeEqn(Time.time);
+        
     }
 
     DerivativeIdEqn derive(SpawnEquation f, float h = 0.0001f)
