@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\GameObjects\Ball\Scripts\BallBehavior.cs" />
     <Compile Include="Assets\GameObjects\Brick\Scripts\BrickScript.cs" />
+    <Compile Include="Assets\GameObjects\Brick\Scripts\TextScript.cs" />
     <Compile Include="Assets\GameObjects\BrickGenerator\Script\BrickGenerationBehavior.cs" />
     <Compile Include="Assets\GameObjects\Paddle\Scripts\PaddleMovementBehaviour.cs" />
     <Reference Include="UnityEditor.StandardEvents">
