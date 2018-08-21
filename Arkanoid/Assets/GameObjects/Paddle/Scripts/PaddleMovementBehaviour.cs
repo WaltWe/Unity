@@ -14,8 +14,8 @@ public class PaddleMovementBehaviour : MonoBehaviour {
         var mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
         if((Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth,0,0)).x/-1) < mouseX && mouseX < (Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x)/1)
         {
-            transform.position = new Vector2(mouseX,-4);
+            //transform.position = new Vector2(mouseX,-4);
+            transform.position = new Vector2(GameObject.Find("Ball").transform.position.x,-4);
         }
-        
 	}
 }

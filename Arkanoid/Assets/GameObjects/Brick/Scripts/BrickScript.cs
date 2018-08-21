@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BrickScript : MonoBehaviour {
-    public int id;
+    int id;
     public int hitCount;
     private SpriteRenderer spr;
     public Sprite[] sprites;
@@ -16,10 +16,10 @@ public class BrickScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Physics.IgnoreCollision(GameObject.Find("Paddle").GetComponent<Collider>(), GetComponent<Collider>());
-        id = (int)(((Mathf.Sin((((Time.time)) - 1) + Mathf.PI) / 2) + ((((Time.time)) - 1) / 2)) / (2.5)) / 3;
-        id = Random.Range(id-1, id + 1);
+        id = Random.Range(Mathf.CeilToInt((Time.time) / 30), Mathf.CeilToInt((Time.time + 15) / 30)+1);
+        id--;
         if (id < 0) { id = 0; }
-        hitCount = id + 1;
+        hitCount = id+1;
         if (id > 4) { id = 4; }
         spr = GetComponent<SpriteRenderer>();
         spr.sprite = sprites[id];
@@ -41,6 +41,7 @@ public class BrickScript : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        GetComponent<SpriteRenderer>().sprite = sprites[hitCount - 1];
     }
 
     

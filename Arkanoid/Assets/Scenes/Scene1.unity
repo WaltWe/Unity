@@ -113,6 +113,23 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &276890859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1619796878764330, guid: a2328400162e53b44a8c7e39817599b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 906344092}
+--- !u!65 &276890860
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 276890859}
+  m_Material: {fileID: 13400000, guid: c8f599d4048674d4db1b007f4465adc8, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.04, y: 0.24, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +249,7 @@ Prefab:
     - target: {fileID: 65713357592002436, guid: a2328400162e53b44a8c7e39817599b0,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4103213662579580, guid: a2328400162e53b44a8c7e39817599b0, type: 2}
       propertyPath: m_LocalScale.y
@@ -242,7 +259,8 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 65713357592002436, guid: a2328400162e53b44a8c7e39817599b0, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: a2328400162e53b44a8c7e39817599b0, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &955376793
