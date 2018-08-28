@@ -9,9 +9,17 @@ public class BrickGenerationBehavior : MonoBehaviour {
     public GameObject[] Bricks;
     // Use this for initialization
     void Start() {
-        for (int i = 0; i < (Camera.main.pixelWidth / (BrickPrefab.GetComponent<Renderer>().bounds.size.x * 25)); i++)
+        Debug.Log(GameObject.Find("Brick").GetComponent<SpriteRenderer>().size.x);
+        for (int i = 0; i < (Camera.main.pixelWidth / (((Camera.main.pixelWidth / 16.0f) / 32.0f) * 32)); i++)
         {
-            Instantiate(BrickPrefab, new Vector3((Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x * -1) + (.6f) + (1.3f * i), (Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y) + .26f, 0), new Quaternion(0, 0, 0, 0));
+            if (Mathf.Abs(Camera.main.aspect - (9f / 16f)) < .001)
+            {
+                Instantiate(BrickPrefab, new Vector3((Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x * -1) + (.3f) + (.6f * i), (Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y) + .26f, 0), new Quaternion(0, 0, 0, 0));
+            }
+            if (Mathf.Abs(Camera.main.aspect - (16f / 9f)) < .001)
+            {
+                Instantiate(BrickPrefab, new Vector3((Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x * -1) + (.6f) + (1.3f * i), (Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y) + .26f, 0), new Quaternion(0, 0, 0, 0));
+            }
         }
     }
 	
@@ -26,11 +34,18 @@ public class BrickGenerationBehavior : MonoBehaviour {
                 topRowY = Bricks[i].transform.position.y;
             }
         }
-        for (int i = 0; i < (Camera.main.pixelWidth / (BrickPrefab.GetComponent<Renderer>().bounds.size.x * 25)); i++)
+        for (int i = 0; i < (Camera.main.pixelWidth / (BrickPrefab.GetComponent<Renderer>().bounds.size.x)); i++)
         {
             if (topRowY < ((Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelHeight, 0, 0)).y * -1) - .4f))
             {
-                Instantiate(BrickPrefab, new Vector3((Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x * -1) + (.6f) + (1.3f * i), (Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y) + .26f, 0), new Quaternion(0, 0, 0, 0));
+                if (Mathf.Abs(Camera.main.aspect - (9f / 16f)) < .001)
+                {
+                    Instantiate(BrickPrefab, new Vector3((Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x * -1) + (.3f) + (.6f * i), (Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y) + .26f, 0), new Quaternion(0, 0, 0, 0));
+                }
+                if(Mathf.Abs(Camera.main.aspect - (16f / 9f)) < .001)
+                {
+                    Instantiate(BrickPrefab, new Vector3((Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x * -1) + (.6f) + (1.3f * i), (Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y) + .26f, 0), new Quaternion(0, 0, 0, 0));
+                }
             }
         }
 	}

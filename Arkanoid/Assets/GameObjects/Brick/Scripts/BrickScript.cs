@@ -8,11 +8,6 @@ public class BrickScript : MonoBehaviour {
     private SpriteRenderer spr;
     public Sprite[] sprites;
 
-    public AnimationCurve idCurve;
-
-    delegate float SpawnEquation(float time);
-    delegate float DerivativeIdEqn(float time);
-
     // Use this for initialization
     void Start () {
         Physics.IgnoreCollision(GameObject.Find("Paddle").GetComponent<Collider>(), GetComponent<Collider>());
@@ -24,11 +19,8 @@ public class BrickScript : MonoBehaviour {
         spr = GetComponent<SpriteRenderer>();
         spr.sprite = sprites[id];
         GetComponent<Rigidbody>().velocity = new Vector3(0, -.1f, 0);
-    }
-
-    DerivativeIdEqn derive(SpawnEquation f, float h = 0.000000001f)
-    {
-        return (x) => (f(x + h) - f(x)) / h;
+        if (Mathf.Abs(Camera.main.aspect - (9f / 16f)) < .001) { GetComponent<Transform>().localScale = new Vector3(Mathf.RoundToInt(GetComponent<Transform>().localScale.x * ((Camera.main.pixelWidth / 16.0f) / 32.0f)), GetComponent<Transform>().localScale.y, GetComponent<Transform>().localScale.z); }
+        Debug.Log(GetComponent<SpriteRenderer>().size.x);
     }
 
     // Update is called once per frame
@@ -41,7 +33,12 @@ public class BrickScript : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        GetComponent<SpriteRenderer>().sprite = sprites[hitCount - 1];
+        int sprID = hitCount - 1;
+        if(sprID > 4)
+        {
+            sprID = 4;
+        }
+        GetComponent<SpriteRenderer>().sprite = sprites[sprID];
     }
 
     
