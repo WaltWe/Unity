@@ -13,5 +13,5 @@ public class TextScript : MonoBehaviour {
 	void Update () {
         int hits = GetComponentInParent<BrickScript>().hitCount;
         GetComponent<TextMesh>().text = hits.ToString();
-	}
+    }
 }

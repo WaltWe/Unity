@@ -142,7 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5679226f0b36c24a9820ce9fca9bdd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   hitCount: 0
   sprites:
   - {fileID: 21300000, guid: bdcdd1a444ed29f43ac48887690dda4d, type: 3}
@@ -150,93 +149,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d722871536550954a8195acbc948aacd, type: 3}
   - {fileID: 21300000, guid: 2e8b1715c57a2b34dac8f1996841f1c9, type: 3}
   - {fileID: 21300000, guid: 5972f12deb7d6554bb11ffc1ed768abc, type: 3}
-  idCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 12.5
-      value: 1.5
-      inSlope: 0.117221534
-      outSlope: 0.117221534
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.16577965
-    - serializedVersion: 3
-      time: 25
-      value: 2
-      inSlope: -0.00013115257
-      outSlope: -0.00013115257
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.20869172
-      outWeight: 0.34808427
-    - serializedVersion: 3
-      time: 37.5
-      value: 2.5
-      inSlope: 0.11562126
-      outSlope: 0.11562126
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.15820923
-    - serializedVersion: 3
-      time: 50
-      value: 3
-      inSlope: 0.0049526775
-      outSlope: 0.0049526775
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.15924168
-    - serializedVersion: 3
-      time: 62.5
-      value: 3.5
-      inSlope: 0.13513868
-      outSlope: 0.13513868
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.17889832
-    - serializedVersion: 3
-      time: 75
-      value: 4
-      inSlope: 0.00078774267
-      outSlope: 0.00078774267
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.30750304
-    - serializedVersion: 3
-      time: 87.5
-      value: 4.5
-      inSlope: 0.12512583
-      outSlope: 0.12512583
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.22411142
-      outWeight: 0.19585937
-    - serializedVersion: 3
-      time: 100
-      value: 5
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  powerups:
+  - {fileID: 1965046821810064, guid: 3cb007e893919584eb026c8a16bc6403, type: 2}
+  force: 0
+  useForce: 0
 --- !u!114 &114211588702648068
 MonoBehaviour:
   m_ObjectHideFlags: 1

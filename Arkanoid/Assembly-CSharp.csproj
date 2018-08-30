@@ -66,6 +66,17 @@
     <Compile Include="Assets\GameObjects\Brick\Scripts\TextScript.cs" />
     <Compile Include="Assets\GameObjects\BrickGenerator\Script\BrickGenerationBehavior.cs" />
     <Compile Include="Assets\GameObjects\Paddle\Scripts\PaddleMovementBehaviour.cs" />
+    <Compile Include="Assets\GameObjects\PowerUps\BallForce.cs" />
+    <Compile Include="Assets\GameObjects\PowerUps\PowerUps.cs" />
+    <Compile Include="Assets\GameObjects\UI\endText.cs" />
+    <Compile Include="Assets\GameObjects\UI\GameOver.cs" />
+    <Compile Include="Assets\GameObjects\UI\GameOverText.cs" />
+    <Compile Include="Assets\GameObjects\UI\LivesScript.cs" />
+    <Compile Include="Assets\GameObjects\UI\MobileLivesHider.cs" />
+    <Compile Include="Assets\GameObjects\UI\MobileScoreHider.cs" />
+    <Compile Include="Assets\GameObjects\UI\restart.cs" />
+    <Compile Include="Assets\GameObjects\UI\UIScript.cs" />
+    <Compile Include="Assets\Stats.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/walt4/Documents/GitHub/Unity/Arkanoid/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

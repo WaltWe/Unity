@@ -17,27 +17,28 @@ public class BallBehavior : MonoBehaviour {
         {
             direction = 1;
         }
-        rb.velocity = new Vector3(15*direction, -15, 0);
+        rb.velocity = new Vector3(7*direction, -7, 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(transform.position.x < (Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x * -1)){
             rb.velocity = Vector3.Reflect(oldVel, (new Vector3(1, 0, 0)));
-            transform.position = new Vector3(-Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x, transform.position.y, 0);
+            transform.position = new Vector3(-Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x, transform.position.y, 1);
         }
         if (transform.position.x > (Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x)){
             rb.velocity = Vector3.Reflect(oldVel, (new Vector3(-1, 0, 0)));
-            transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x, transform.position.y, 0);
+            transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x, transform.position.y, 1);
         }
         if (transform.position.y < (Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y * -1)){
-            rb.velocity = Vector3.Reflect(oldVel, (new Vector3(0, 1, 0)));
-            transform.position = new Vector3(transform.position.x, -Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y, 0);
+            GameObject.Find("Lives").GetComponent<LivesScript>().lives--;
+            GameObject.Find("Mobile Lives").GetComponent<LivesScript>().lives--;
+            transform.position = new Vector3(0, 0, 1);
         }
         if (transform.position.y > (Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y))
         {
             rb.velocity = Vector3.Reflect(oldVel, (new Vector3(0,-1,0)));
-            transform.position = new Vector3(transform.position.x, Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y, 0);
+            transform.position = new Vector3(transform.position.x, Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y, 1);
         }
         oldVel = rb.velocity;
     }
@@ -45,10 +46,16 @@ public class BallBehavior : MonoBehaviour {
     {
         if (col.gameObject.name == "Brick(Clone)")
         {
-            col.gameObject.GetComponent<BrickScript>().hitCount--;
-            if(col.gameObject.GetComponent<BrickScript>().hitCount == 0)
+            col.gameObject.GetComponent<BrickScript>().hitCount-=PowerUps.force;
+            if(col.gameObject.GetComponent<BrickScript>().hitCount <= 0)
             {
+                if (col.gameObject.GetComponent<BrickScript>().useForce)
+                {
+                    Instantiate(col.gameObject.GetComponent<BrickScript>().powerups[0], new Vector3(transform.position.x, transform.position.y, transform.position.z), new Quaternion(0, 0, 0, 0));
+                }
                 Destroy(col.gameObject);
+                GameObject.Find("Score").GetComponent<UIScript>().score++;
+                GameObject.Find("Mobile Score").GetComponent<UIScript>().score++;
             }
         }
         ContactPoint cp = col.contacts[0];
