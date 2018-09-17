@@ -67,6 +67,7 @@
     <Compile Include="Assets\GameObjects\BrickGenerator\Script\BrickGenerationBehavior.cs" />
     <Compile Include="Assets\GameObjects\Paddle\Scripts\PaddleMovementBehaviour.cs" />
     <Compile Include="Assets\GameObjects\PowerUps\BallForce.cs" />
+    <Compile Include="Assets\GameObjects\PowerUps\BallSpeed.cs" />
     <Compile Include="Assets\GameObjects\PowerUps\PowerUps.cs" />
     <Compile Include="Assets\GameObjects\UI\endText.cs" />
     <Compile Include="Assets\GameObjects\UI\GameOver.cs" />

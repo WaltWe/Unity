@@ -9,10 +9,14 @@ public class BrickScript : MonoBehaviour {
     public Sprite[] sprites;
     public GameObject[] powerups;
     public int force;
+    public int speed;
+    public int explode;
+    public bool useSpeed = false;
     public bool useForce = false;
+    public bool useExplode = false;
     // Use this for initialization
     void Start () {
-        Physics.IgnoreCollision(GameObject.Find("Paddle").GetComponent<Collider>(), GetComponent<Collider>());
+        //Physics.IgnoreCollision(GameObject.Find("Paddle").GetComponent<Collider>(), GetComponent<Collider>());
         Physics.IgnoreCollision(GameObject.Find("Ceiling").GetComponent<Collider>(), GetComponent<Collider>());
         id = Random.Range(Mathf.CeilToInt((Time.timeSinceLevelLoad) / 30), Mathf.CeilToInt((Time.timeSinceLevelLoad + 15) / 30)+1);
         id--;
@@ -21,13 +25,22 @@ public class BrickScript : MonoBehaviour {
         if (id > 4) { id = 4; }
         spr = GetComponent<SpriteRenderer>();
         spr.sprite = sprites[id];
-        GetComponent<Rigidbody>().velocity = new Vector3(0, -.3f, 0);
-        if (Mathf.Abs(Camera.main.aspect - (9f / 16f)) < .001) { GetComponent<Transform>().localScale = new Vector3((GetComponent<Transform>().localScale.x / 2f), GetComponent<Transform>().localScale.y, GetComponent<Transform>().localScale.z); }
-        force = Random.Range(2*id + 1, 50);
-        Debug.Log((2f * (float)id + 1f) / 50f);
+        GetComponent<Rigidbody>().velocity = new Vector3(0, -.1f, 0);
+        if (Mathf.Abs(Camera.main.aspect - (10f / 16f)) < .001) { GetComponent<Transform>().localScale = new Vector3((GetComponent<Transform>().localScale.x / 2f), GetComponent<Transform>().localScale.y, GetComponent<Transform>().localScale.z); }
+        force = Random.Range(3*id + 1, 50);
         if (force == 1)
         {
             useForce = true;
+        }
+        speed = Random.Range(3 * id + 1, 50);
+        if (speed == 1)
+        {
+            useSpeed = true;
+        }
+        explode = Random.Range(id * id + 1, 50);
+        if(explode == 1)
+        {
+            useExplode = true;
         }
     }
 
@@ -43,10 +56,18 @@ public class BrickScript : MonoBehaviour {
             GameObject.Find("Lives").GetComponent<LivesScript>().lives--;
             GameObject.Find("Mobile Lives").GetComponent<LivesScript>().lives--;
         }
+        if(hitCount <= 0)
+        {
+            Destroy(gameObject);
+        }
         int sprID = hitCount - 1;
         if(sprID > 4)
         {
             sprID = 4;
+        }
+        if(sprID < 0)
+        {
+            sprID = 0;
         }
         GetComponent<SpriteRenderer>().sprite = sprites[sprID];
     }

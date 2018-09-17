@@ -5,8 +5,14 @@ using UnityEngine;
 public class BallForce : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
+        GameObject[] bricks = GameObject.FindGameObjectsWithTag("Brick");
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Brick").Length; i++)
+        {
+            Physics.IgnoreCollision(bricks[i].GetComponent<Collider>(), GetComponent<Collider>());
+        }
         Physics.IgnoreCollision(GameObject.Find("Brick(Clone)").GetComponent<Collider>(), GetComponent<Collider>());
         Physics.IgnoreCollision(GameObject.Find("Ball").GetComponent<Collider>(), GetComponent<Collider>());
+        GetComponent<Rigidbody>().velocity = new Vector3(0, -4f, 0);
     }
 	
 	// Update is called once per frame

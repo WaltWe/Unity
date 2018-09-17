@@ -16,16 +16,26 @@ public class PaddleMovementBehaviour : MonoBehaviour {
         var mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
         if((Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth,0,0)).x/-1) < mouseX && mouseX < (Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x)/1)
         {
-            //transform.position = new Vector3(mouseX,-4f,1f);
-            if (GameObject.Find("Ball").GetComponent<Rigidbody>().velocity.y > 0 && GameObject.Find("BallForce(Clone)") != null)
-            {
-                transform.position = new Vector3(GameObject.Find("BallForce(Clone)").transform.position.x, -4.5f, 1f);
-            }
-            else
-            {
-                transform.position = new Vector3(GameObject.Find("Ball").transform.position.x, -4.5f, 1f);
-            }
+            //transform.position = new Vector3(mouseX, -4f, 1f);
         }
+        ///*
+        if (GameObject.Find("Ball").GetComponent<Rigidbody>().velocity.y > 0 && GameObject.Find("BallForce(Clone)") != null)
+        {
+            transform.position = new Vector3(GameObject.Find("BallForce(Clone)").transform.position.x, -4.5f, 1f);
+        }
+        else if (GameObject.Find("Ball").GetComponent<Rigidbody>().velocity.y > 0 && GameObject.Find("BallSpeed(Clone)") != null)
+        {
+            transform.position = new Vector3(GameObject.Find("BallSpeed(Clone)").transform.position.x, -4.5f, 1f);
+        }
+        else if (GameObject.Find("Ball").GetComponent<Rigidbody>().velocity.y > 0 && GameObject.Find("BallExplode(Clone)") != null)
+        {
+            transform.position = new Vector3(GameObject.Find("BallExplode(Clone)").transform.position.x, -4.5f, 1f);
+        }
+        else
+        {
+            transform.position = new Vector3(GameObject.Find("Ball").transform.position.x, -4.5f, 1f);
+        }
+        //*/
         powerCount--;
         if (powerCount == 0){
             PowerUps.clearAll();
