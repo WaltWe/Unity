@@ -1,0 +1,58 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class player : MonoBehaviour {
+
+    public bool onGround = true;
+    public bool moveright;
+    public bool jump;
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        if (Input.GetKey("d")|| Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Translate(Input.GetAxis("Horizontal") * 0.25f, 0, 0);
+        }
+        if (moveright)
+        {
+            transform.Translate(0.25f, 0, 0);
+        }
+        if (jump&&onGround)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 10);
+        }else 
+        if (Input.GetKeyDown("space")&&onGround)
+        {
+            GetComponent<Rigidbody2D>().velocity += new Vector2(0, 15);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "ground(Clone)")
+        {
+            onGround = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "ground(Clone)")
+        {
+            onGround = true;
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "ground(Clone)")
+        {
+            onGround = true;
+        }
+    }
+}

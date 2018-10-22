@@ -20,21 +20,51 @@ public class AlienManager : MonoBehaviour{
         maxCol = ((int)(Camera.main.pixelHeight / (Camera.main.WorldToScreenPoint(new Vector3(Alien.GetComponent<Renderer>().bounds.size.y, 0, 0)).x / 10))) - 2;
         alienWidth = Camera.main.ScreenToWorldPoint(new Vector3(Alien.GetComponent<Renderer>().bounds.size.x, 0, 0)).x/10;
         alienHeight = Camera.main.ScreenToWorldPoint(new Vector3(0, Alien.GetComponent<Renderer>().bounds.size.y, 0)).y/10;
-        leftX = ((-alienWidth + .5f) * maxCol);
-        topY = Camera.main.ScreenToWorldPoint(new Vector3(0,Camera.main.pixelHeight,0)).y - alienWidth/2;
-        
+        leftX = -((-alienWidth + .5f) * maxCol);
+        topY = Camera.main.ScreenToWorldPoint(new Vector3(0,Camera.main.pixelHeight,0)).y - alienWidth/2 - 1;
+
         Aliens = new GameObject[maxRow, maxCol];
 
-        makeAliens();
+        //makeAliens();
 
-        GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 0, 0);
+        //GetComponent<Rigidbody2D>().velocity = new Vector3(-3, 0, 0);
     }
 
     private void Update()
     {
-        if(transform.position.x < -Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth,0,0)).x -leftX)
+        if (!Stats.pause && Stats.level <= 11)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector3(1, 0, 0);
+            if(GetComponent<Rigidbody2D>().velocity.x == 0)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector3(-3, 0, 0);
+            }
+            if (transform.position.x < -Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x - alienWidth * maxCol - alienWidth + .5)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector3(3, 0, 0);
+            }
+            else if (transform.position.x > -(-Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x - alienWidth * maxCol - alienWidth + .5))
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector3(-3, 0, 0);
+            }
+        }
+        else if (Stats.level > 11)
+        {
+            if (GetComponent<Rigidbody2D>().velocity.x == 0)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector3(-6, 0, 0);
+            }
+            if (transform.position.x < -Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x - alienWidth * maxCol - alienWidth + .5)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector3(6, 0, 0);
+            }
+            else if (transform.position.x > -(-Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x - alienWidth * maxCol - alienWidth + .5))
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector3(-6, 0, 0);
+            }
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
         }
     }
 
@@ -49,13 +79,17 @@ public class AlienManager : MonoBehaviour{
                 alien.transform.parent = this.transform;
                 alien.GetComponent<Alien>().Row = row+1;
                 alien.GetComponent<Alien>().Col = col+1;
-                alien.GetComponent<Alien>().level = GameObject.Find("LevelManager").GetComponent<LevelManager>().Level;
+                alien.GetComponent<Alien>().maxCol = maxCol;
+                alien.GetComponent<Alien>().maxRow = maxRow;
+                alien.GetComponent<Alien>().level = Stats.level;
+                GameObject.Find("LevelManager").GetComponent<LevelManager>().alienCount++;
                 Aliens[row, col] = alien;
             }
         }
     }
     public void deleteAliens()
     {
+        transform.position = new Vector3(0, 0, 0);
         for(int row = 0; row < maxRow; row++)
         {
             for(int col = 0; col < maxCol; col++)
@@ -65,6 +99,28 @@ public class AlienManager : MonoBehaviour{
                     DestroyObject(Aliens[row, col]);
                     Aliens[row, col] = null;
                 }
+            }
+        }
+    }
+    public void makeBoss()
+    {
+        deleteAliens();
+        maxRow = Stats.level - 11;
+        maxCol = Stats.level - 11;
+        leftX = -((-alienWidth + .5f) * maxCol);
+        for (int row = 0; row < maxRow; row++)
+        {
+            for (int col = 0; col < maxCol; col++)
+            {
+                GameObject alien = Instantiate(Alien, new Vector2(leftX + (row + 1) * (-alienWidth + .5f), topY + (col + 1) * (alienHeight - .5f)), new Quaternion(0, 0, 0, 0));
+                alien.transform.parent = this.transform;
+                alien.GetComponent<Alien>().Row = row + 1;
+                alien.GetComponent<Alien>().Col = col + 1;
+                alien.GetComponent<Alien>().maxCol = maxCol;
+                alien.GetComponent<Alien>().maxRow = maxRow;
+                alien.GetComponent<Alien>().level = Stats.level;
+                GameObject.Find("LevelManager").GetComponent<LevelManager>().alienCount++;
+                Aliens[row, col] = alien;
             }
         }
     }
