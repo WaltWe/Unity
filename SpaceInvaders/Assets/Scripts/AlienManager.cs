@@ -17,13 +17,15 @@ public class AlienManager : MonoBehaviour{
     private void Start()
     {
         maxRow = ((int)(Camera.main.pixelWidth / (Camera.main.WorldToScreenPoint(new Vector3(Alien.GetComponent<Renderer>().bounds.size.x, 0, 0)).x / 10))) - 8;
-        maxCol = ((int)(Camera.main.pixelHeight / (Camera.main.WorldToScreenPoint(new Vector3(Alien.GetComponent<Renderer>().bounds.size.y, 0, 0)).x / 10))) - 2;
+        maxCol = ((int)(Camera.main.pixelHeight / (Camera.main.WorldToScreenPoint(new Vector3(0, Alien.GetComponent<Renderer>().bounds.size.y, 0)).y / 10))) - 12;
         alienWidth = Camera.main.ScreenToWorldPoint(new Vector3(Alien.GetComponent<Renderer>().bounds.size.x, 0, 0)).x/10;
         alienHeight = Camera.main.ScreenToWorldPoint(new Vector3(0, Alien.GetComponent<Renderer>().bounds.size.y, 0)).y/10;
         leftX = -((-alienWidth + .5f) * maxCol);
         topY = Camera.main.ScreenToWorldPoint(new Vector3(0,Camera.main.pixelHeight,0)).y - alienWidth/2 - 1;
 
         Aliens = new GameObject[maxRow, maxCol];
+
+        //Debug.Log("Max Row: " + maxRow + "\nMax Col: " + maxCol);
 
         //makeAliens();
 
@@ -38,11 +40,11 @@ public class AlienManager : MonoBehaviour{
             {
                 GetComponent<Rigidbody2D>().velocity = new Vector3(-3, 0, 0);
             }
-            if (transform.position.x < -Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x - alienWidth * maxCol - alienWidth + .5)
+            if (transform.position.x < -Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x - alienWidth * maxCol - alienWidth * 1.5 + .5)
             {
                 GetComponent<Rigidbody2D>().velocity = new Vector3(3, 0, 0);
             }
-            else if (transform.position.x > -(-Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x - alienWidth * maxCol - alienWidth + .5))
+            else if (transform.position.x > -(-Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x - alienWidth * maxCol - alienWidth * 2 * 1.5 + .5))
             {
                 GetComponent<Rigidbody2D>().velocity = new Vector3(-3, 0, 0);
             }
