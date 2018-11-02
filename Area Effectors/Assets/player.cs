@@ -15,18 +15,7 @@ public class player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey("d")|| Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(Input.GetAxis("Horizontal") * 0.25f, 0, 0);
-        }
-        if (moveright)
-        {
-            transform.Translate(0.25f, 0, 0);
-        }
-        if (jump&&onGround)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 10);
-        }else 
+        transform.Translate(Input.GetAxis("Horizontal") * 0.25f, 0, 0);
         if (Input.GetKeyDown("space")&&onGround)
         {
             GetComponent<Rigidbody2D>().velocity += new Vector2(0, 15);

@@ -224,6 +224,7 @@
     <Compile Include="Assets\ground.cs" />
     <Compile Include="Assets\player.cs" />
     <Compile Include="Assets\terrainGenerator.cs" />
+    <Compile Include="Assets\TouchControls.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
