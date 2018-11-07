@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class MapDisplay : MonoBehaviour {
 
-    public Renderer textureRenderer;
-    public MeshFilter meshFilter;
-    public MeshRenderer meshRenderer;
+    //public Renderer textureRenderer;
+    //public MeshFilter meshFilter;
+    //public MeshRenderer meshRenderer;
 
-	public void DrawTexture(Texture2D texture)
+	public void DrawTexture(Texture2D texture, Renderer textureRenderer)
     {
         textureRenderer.sharedMaterial.mainTexture = texture;
         textureRenderer.transform.localScale = new Vector3(texture.width, 1, texture.height);
     }
 
-    public void DrawMesh(MeshData meshData, Texture2D texture)
+    public void DrawMesh(MeshData meshData, Texture2D texture, MeshFilter meshFilter, MeshRenderer meshRenderer, Renderer textureRenderer)
     {
         meshFilter.sharedMesh = meshData.CreateMesh();
-        meshRenderer.sharedMaterial.mainTexture = texture;
+        //Debug.Log(meshRenderer);
+        //meshRenderer.sharedMaterial.mainTexture = texture;
 
         Matrix4x4[] matrix = {
         new Matrix4x4(
@@ -35,7 +36,7 @@ public class MapDisplay : MonoBehaviour {
         MeshExtrusion.ExtrudeMesh(meshFilter.sharedMesh, meshFilter.sharedMesh, matrix, false);
     }
 
-    public void DrawNoiseMap(float[,] noiseMap)
+    public void DrawNoiseMap(float[,] noiseMap, Renderer textureRenderer)
     {
         int width = noiseMap.GetLength(0);
         int height = noiseMap.GetLength(1);

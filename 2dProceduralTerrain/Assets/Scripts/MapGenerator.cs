@@ -17,18 +17,20 @@ public class MapGenerator : MonoBehaviour {
     public Vector2 offset;
     public float meshHeightMultiplier;
 
-    public void GenerateMap()
+    public void GenerateMap(MeshFilter meshFilter, MeshRenderer meshRenderer, Renderer textureRenderer, float xTransform)
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, seed,noiseScale,octaves,persistance,lacunarity,offset);
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth,mapHeight,seed,noiseScale,octaves,persistance,lacunarity,offset,xTransform);
 
         MapDisplay display = FindObjectOfType<MapDisplay>();
         if(drawMode == DrawMode.NoiseMap)
         {
-            display.DrawNoiseMap(noiseMap);
+            //display.DrawNoiseMap(noiseMap);
         }else if(drawMode == DrawMode.Mesh){
-            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap,meshHeightMultiplier), TextureGenerator.TextureFromHeightMap(noiseMap));
+            //display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap,meshHeightMultiplier), TextureGenerator.TextureFromHeightMap(noiseMap), meshFilter, meshRenderer);
         }
-        
+
+        display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier), TextureGenerator.TextureFromHeightMap(noiseMap), meshFilter, meshRenderer, textureRenderer);
+
     }
 
     private void OnValidate()
