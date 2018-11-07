@@ -29,7 +29,7 @@ public class MapDisplay : MonoBehaviour {
         new Vector4(1,0,0,0),
         new Vector4(0,1,0,0),
         new Vector4(0,0,1,0),
-        new Vector4(0,-500,0,1))
+        new Vector4(0,-70,0,1))
         };
 
         MeshExtrusion.ExtrudeMesh(meshFilter.sharedMesh, meshFilter.sharedMesh, matrix, false);

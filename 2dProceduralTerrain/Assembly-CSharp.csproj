@@ -64,22 +64,25 @@
     <Compile Include="Assets\Scripts\MapDisplay.cs" />
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\MapGeneratorEditor.cs" />
+    <Compile Include="Assets\Scripts\MeshDeleter.cs" />
     <Compile Include="Assets\Scripts\MeshExtrusion.cs" />
     <Compile Include="Assets\Scripts\MeshGenerator.cs" />
     <Compile Include="Assets\Scripts\Noise.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\TerrainControl.cs" />
     <Compile Include="Assets\Scripts\TextureGenerator.cs" />
+    <Compile Include="Assets\Scripts\WorldTerrainGenerator.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Walt/Documents/2dProceduralTerrain/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Walt/Documents/GitHub/Unity/2dProceduralTerrain/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Walt/Documents/2dProceduralTerrain/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Walt/Documents/GitHub/Unity/2dProceduralTerrain/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Walt/Documents/2dProceduralTerrain/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Walt/Documents/GitHub/Unity/2dProceduralTerrain/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Walt/Documents/2dProceduralTerrain/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Walt/Documents/GitHub/Unity/2dProceduralTerrain/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
