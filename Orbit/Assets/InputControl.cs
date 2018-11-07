@@ -14,17 +14,8 @@ public class InputControl : MonoBehaviour
         {
             float h = rotateSpeed * Input.GetAxis("Horizontal");
             float v = rotateSpeed * Input.GetAxis("Vertical");
-            float c;
-            Debug.Log(v);
-            //if (Input.GetKeyDown(KeyCode.Q))
-            //{
-            //    c = rotateSpeed;
-            //}
-            //else
-            //{
-            //    c = 0;
-            //}
-            cameraOrbit.transform.eulerAngles = new Vector3(cameraOrbit.transform.eulerAngles.x /*+ c*/, cameraOrbit.transform.eulerAngles.y + h, cameraOrbit.transform.eulerAngles.z + v);
+            Debug.Log(cameraOrbit.transform.eulerAngles);
+            cameraOrbit.transform.eulerAngles = new Vector3(cameraOrbit.transform.eulerAngles.x, cameraOrbit.transform.eulerAngles.y + h, cameraOrbit.transform.eulerAngles.z + v);
         }
 
     }
