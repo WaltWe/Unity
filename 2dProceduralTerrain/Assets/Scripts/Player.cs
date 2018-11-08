@@ -14,10 +14,10 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
     {
-        transform.Translate(Input.GetAxis("Horizontal") * 0.25f, 0, 0);
+        transform.Translate(Input.GetAxis("Horizontal") * 2f, 0, 0);
         if (Input.GetKeyDown("space") && onGround)
         {
-            GetComponent<Rigidbody>().velocity += new Vector3(0, 5);
+            GetComponent<Rigidbody>().velocity += new Vector3(0, 50);
         }
     }
 

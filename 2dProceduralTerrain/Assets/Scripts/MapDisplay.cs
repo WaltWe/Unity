@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MapDisplay : MonoBehaviour {
 
-    //public Renderer textureRenderer;
-    //public MeshFilter meshFilter;
-    //public MeshRenderer meshRenderer;
+    public Renderer textureRenderer;
+    public MeshFilter meshFilter;
+    public MeshRenderer meshRenderer;
 
 	public void DrawTexture(Texture2D texture, Renderer textureRenderer)
     {
@@ -14,29 +14,14 @@ public class MapDisplay : MonoBehaviour {
         textureRenderer.transform.localScale = new Vector3(texture.width, 1, texture.height);
     }
 
-    public void DrawMesh(MeshData meshData, Texture2D texture, MeshFilter meshFilter, MeshRenderer meshRenderer, Renderer textureRenderer)
+    public void DrawMesh(MeshData meshData, Texture2D texture)
     {
         meshFilter.sharedMesh = meshData.CreateMesh();
         //Debug.Log(meshRenderer);
-        //meshRenderer.sharedMaterial.mainTexture = texture;
-
-        Matrix4x4[] matrix = {
-        new Matrix4x4(
-        new Vector4(1,0,0,0),
-        new Vector4(0,1,0,0),
-        new Vector4(0,0,1,0),
-        new Vector4(0,0,0,1)),
-        new Matrix4x4(
-        new Vector4(1,0,0,0),
-        new Vector4(0,1,0,0),
-        new Vector4(0,0,1,0),
-        new Vector4(0,-70,0,1))
-        };
-
-        MeshExtrusion.ExtrudeMesh(meshFilter.sharedMesh, meshFilter.sharedMesh, matrix, false);
+        meshRenderer.sharedMaterial.mainTexture = texture;
     }
 
-    public void DrawNoiseMap(float[,] noiseMap, Renderer textureRenderer)
+    public void DrawNoiseMap(float[,] noiseMap)
     {
         int width = noiseMap.GetLength(0);
         int height = noiseMap.GetLength(1);
