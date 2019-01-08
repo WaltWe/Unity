@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Rooms
+  - SpawnPoint
+  - Destroyer
+  - powerUp
+  - gravity down
+  - gravity up
+  - gravity left
+  - gravity right
+  - magnetic gravity up
+  - magnetic gravity down
+  - magnetic gravity left
+  - magnetic gravity right
   layers:
   - Default
   - TransparentFX
